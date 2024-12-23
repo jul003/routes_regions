@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "c2865c33-2e8d-4296-af0f-5c1710a0f9d6",
+		"name": "Geo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27388830"
+	},
+	"item": [
+		{
+			"name": "Get Roads",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "login",
+						"value": "v4.public.eyJhbGlhcyI6IkdoYWlkYSBGYXN5YSIsImV4cCI6IjIwMjQtMTItMTRUMDc6MTc6NTZaIiwiaWF0IjoiMjAyNC0xMi0xM1QxMzoxNzo1NloiLCJpZCI6IjYyODE5MDg5MTUzMjAiLCJuYmYiOiIyMDI0LTEyLTEzVDEzOjE3OjU2WiJ9KOqikxdsOKWPt6ugvZY6D66g6ITg0ybxEmVkKw5X8USZlPBlXjWmNnp1ZvN_Rt3v3AMvJiydKKg5gMhmJfAtDw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"long\": 107.5758500037501,\r\n  \"lat\": -6.874720427234501,\r\n  \"max_distance\": 100\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://asia-southeast2-awangga.cloudfunctions.net/idbiz/geo/roads",
+					"protocol": "https",
+					"host": [
+						"asia-southeast2-awangga",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"idbiz",
+						"geo",
+						"roads"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Regions",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "login",
+						"value": "v4.public.eyJhbGlhcyI6IkdoYWlkYSBGYXN5YSIsImV4cCI6IjIwMjQtMTItMTRUMDc6MTc6NTZaIiwiaWF0IjoiMjAyNC0xMi0xM1QxMzoxNzo1NloiLCJpZCI6IjYyODE5MDg5MTUzMjAiLCJuYmYiOiIyMDI0LTEyLTEzVDEzOjE3OjU2WiJ9KOqikxdsOKWPt6ugvZY6D66g6ITg0ybxEmVkKw5X8USZlPBlXjWmNnp1ZvN_Rt3v3AMvJiydKKg5gMhmJfAtDw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"long\": 107.5758500037501,\r\n  \"lat\": -6.874720427234501\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://asia-southeast2-awangga.cloudfunctions.net/idbiz/geo/region",
+					"protocol": "https",
+					"host": [
+						"asia-southeast2-awangga",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"idbiz",
+						"geo",
+						"region"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
