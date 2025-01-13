@@ -1,140 +1,414 @@
-openapi: 3.0.3
+openapi: 3.0.0
 info:
-  title: Geo API
-  description: API untuk mendapatkan data jalan dan wilayah berdasarkan koordinat.
+  title: Proyek3
   version: 1.0.0
 servers:
-  - url: https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis
+  - url: https://bp-promosi-umkm-0fd00e17451e.herokuapp.com
+tags:
+  - name: Product
+  - name: Auth
+  - name: Category
+  - name: Store
+  - name: Status
+  - name: Datausers
 paths:
-  /data/gis/jalan:
+  /insert/product:
     post:
       tags:
-        - roads
-      summary: Get roads data around a point
-      description: Mengembalikan data jalan di sekitar titik koordinat yang diberikan dengan jarak maksimum tertentu.
+        - Product
+      summary: Insert Product
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               type: object
-              properties:
-                long:
-                  type: number
-                  format: float
-                  description: Longitude coordinate
-                  example: 107.5758500037501
-                lat:
-                  type: number
-                  format: float
-                  description: Latitude coordinate
-                  example: -6.874720427234501
-                max_distance:
-                  type: integer
-                  description: Maximum distance (in meters) to search for roads
-                  example: 100
+              example:
+                product_name: Jus Alpukat
+                description: Minuman segar
+                image: >-
+                  https://dcostseafood.id/wp-content/uploads/2021/12/Jus-Alpukat.jpg
+                price: 15000
+                category:
+                  id: 6776bf9e30844cbcd9fa31b4
+                store:
+                  id: 6783aaae4613924a4ca8af94
+                status:
+                  id: 67811f31a6ffe1a1bca38c12
       responses:
-        "200":
-          description: List of roads around the given point
+        '200':
+          description: Successful response
           content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Road"
-        "400":
-          description: Invalid request
-  /data/gis/region:
-    post:
+            application/json: {}
+  /product:
+    get:
       tags:
-        - region
-      summary: Get region data around a point
-      description: Mengembalikan data wilayah di sekitar titik koordinat yang diberikan.
+        - Product
+      summary: Get All Product
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /product/677e98d1f4f1b96ad63df38d:
+    get:
+      tags:
+        - Product
+      summary: Get Product By ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /update/product/677e98d1f4f1b96ad63df38d:
+    put:
+      tags:
+        - Product
+      summary: Update Product
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               type: object
-              properties:
-                long:
-                  type: number
-                  format: float
-                  description: Longitude coordinate
-                  example: 107.5758500037501
-                lat:
-                  type: number
-                  format: float
-                  description: Latitude coordinate
-                  example: -6.874720427234501
+              example:
+                product_name: Mie Shitman Extra Spicy
+                description: Mie super pedas
+                image: mie_spicy.jpg
+                price: 20000
+                category:
+                  id: 677658bff4f7b2763158fee9
+                store:
+                  id: 677e82c0f3fbbe5e9f752065
+                status:
+                  id: 67811f40a6ffe1a1bca38c13
       responses:
-        "200":
-          description: Region data around the given point
+        '200':
+          description: Successful response
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Region"
-        "400":
-          description: Invalid request
-components:
-  schemas:
-    Road:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the road
-          example: "12345"
-        name:
-          type: string
-          description: Name of the road
-          example: "Jalan Raya Bandung"
-        length:
-          type: number
-          description: Length of the road in meters
-          example: 1200
-        geometry:
-          type: object
-          properties:
-            type:
-              type: string
-              example: "LineString"
-            coordinates:
-              type: array
-              items:
-                type: array
-                items:
-                  type: number
-                  format: float
-                  description: Coordinates of the road
-                  example: [107.575, -6.874]
-    Region:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the region
-          example: "67890"
-        name:
-          type: string
-          description: Name of the region
-          example: "Bandung City"
-        type:
-          type: string
-          description: Type of region (e.g., city, district)
-          example: "city"
-        boundary:
-          type: object
-          properties:
-            type:
-              type: string
-              example: "Polygon"
-            coordinates:
-              type: array
-              items:
-                type: array
-                items:
-                  type: number
-                  format: float
-                  description: Coordinates of the region boundary
-                  example: [107.575, -6.874]
+            application/json: {}
+  /product/delete/677e515d4ddcb5ee2941224b:
+    delete:
+      tags:
+        - Product
+      summary: Delete Product
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/register:
+    post:
+      tags:
+        - Auth
+      summary: Register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: ghaidafasya24
+                password: ghaida123
+                email: ghaida@gmail.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users:
+    get:
+      tags:
+        - Datausers
+      summary: Users
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /insert/user:
+    post:
+      tags:
+        - Datausers
+      summary: Insert Data Users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                - username: ghaidafasya
+                  password: ghaida12345
+                  phone_number: '6281908915320'
+                  email: ghaida@gmail.com
+                  store:
+                    id: 677e82c0f3fbbe5e9f752065
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /category:
+    get:
+      tags:
+        - Category
+      summary: Get All Category
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /insert/category:
+    post:
+      tags:
+        - Category
+      summary: Insert Category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                category_name: Drink
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /category/6776c1fe30844cbcd9fa31b6:
+    get:
+      tags:
+        - Category
+      summary: Get Category By ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /category/delete/67768cee58c029547e7bd92d:
+    delete:
+      tags:
+        - Category
+      summary: Delete Category
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /update/category/677aa57c385e65dd663d47b2:
+    put:
+      tags:
+        - Category
+      summary: Update Category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                category_name: Drink
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /insert/store:
+    post:
+      tags:
+        - Store
+      summary: Insert Store
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                store_name: Mie Gacoan
+                address: Jalan Surya Sumantri
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /store:
+    get:
+      tags:
+        - Store
+      summary: Get All Store
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /store/677e80a2f3fbbe5e9f752064:
+    get:
+      tags:
+        - Store
+      summary: Get Store By ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /update/store/677e82c0f3fbbe5e9f752065:
+    put:
+      tags:
+        - Store
+      summary: Update Store
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                store_name: Mie Gacoan
+                address: Jln Surya Sumantri
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /store/delete/677e80a2f3fbbe5e9f752064:
+    delete:
+      tags:
+        - Store
+      summary: Delete Store
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /statuses:
+    get:
+      tags:
+        - Status
+      summary: Get All Status
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /status/67811f31a6ffe1a1bca38c12:
+    get:
+      tags:
+        - Status
+      summary: Get Status By ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /insert/status:
+    post:
+      tags:
+        - Status
+      summary: Insert Status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                status: Accepted
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /update/status/{id}:
+    put:
+      tags:
+        - Status
+      summary: Update Status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                status: Accepted
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /status/delete/{id}:
+    delete:
+      tags:
+        - Status
+      summary: Delete Status
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/{id}:
+    get:
+      tags:
+        - Datausers
+      summary: GET USERS BY ID
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /update/user/{id}:
+    put:
+      tags:
+        - Datausers
+      summary: Update Data Users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                - username: ghaidafasya
+                  password: ghaida12345
+                  phone_number: '6281908915320'
+                  email: ghaida@gmail.com
+                  store:
+                    id: 677e82c0f3fbbe5e9f752065
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/delete/{id}:
+    delete:
+      tags:
+        - Datausers
+      summary: Delete Datausers
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {} 
